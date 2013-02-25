@@ -99,10 +99,11 @@ Objects are collections of properties, and everything that's not a primitive val
 #### Primitives vs Objects
 
 Primitive values mimic objects in some ways. They have object-like properties which are immutable. 
+
     'a string'.length
 
   
-    // This looks like it worked, but when you inspect `true.foo` afterwards,
+    // This looks like it works, but when you inspect `true.foo` afterwards,
     // you can see it hasn't changed.
     true.foo = 'bar' 
 
@@ -279,22 +280,18 @@ Functions are the "verbs" of programming. In the same way that we use variables 
 
 For example, when we add the task "grocery shopping" to our todo list, we're referring to a complex real-world <em>process</em> that we've <em>abstracted by giving it a name</em>. It might mean something like this:
 
-ol 
-  li Enter the store. 
-  li Obtain a shopping cart. 
-  li Shop for produce
-  ul
-    li Get peppers
-    ul
-      li Move to peppers
-      li Choose peppers
-      ul
-        li Extend arm
-        li Grasp a pepper
-        li Retract arm
-        li Inspect for blemishes
-        li Add to cart
-  li ... 
+1. Enter the store. 
+2. Obtain a shopping cart. 
+3. Shop for produce
+   * Get peppers
+     * Move to peppers
+     * Choose peppers
+       * Extend arm
+       * Grasp a pepper
+       * Retract arm
+       * Inspect for blemishes
+       * Add to cart
+   * ... 
 
 Each of these list items is also a named process that "encapsulates" a series of steps which, in turn, might also name and hide another series of steps... right down to "extend your arm, grasp an object, retract your arm, release the object", and so on. 
 
@@ -442,11 +439,6 @@ You'll see anonymous functions used everywhere in JavaScript.
     });
 
 
-.alert.alert-info
-  h5
-    i.icon-info-sign
-    |  Math.pow()
-  p JavaScript has some built in objects like <code>Math</code> that provide us with convenient helper functions, like <code>pow()</code>. You can learn more about them in the MDN JavaScript Guide.
 
 A third consequence of functions being first-class values is that they can be return values of other functions. This gives us yet another way to use functions as building blocks. Let's create some functions this way.
 
@@ -591,7 +583,8 @@ A constructor is a special kind of function that's used like a template for crea
 * sets the value of `this` to an empty object, which is the starting point for the object under construction
 * causes the constructor to implicitly return `this`
 
-       
+Example:       
+
     function Dog(greeting) {
       this.greeting = greeting;
     }
@@ -692,7 +685,7 @@ If a global and local variable have the same name, the local variable will alway
 
 #### Closure
 
-p Suppose we want to "remember" the values of all the variables and arguments in a function's scope chain, even after it has returned. There's a way to do this called <em>creating a closure</em>. To create a closure in JavaScript, we need to return a function from another function. 
+Suppose we want to "remember" the values of all the variables and arguments in a function's scope chain, even after it has returned. There's a way to do this called <em>creating a closure</em>. To create a closure in JavaScript, we need to return a function from another function. 
 
     function power(x) {
     
@@ -853,7 +846,9 @@ Declarative and functional styles, in contrast, emphasizes _evaluation_, and ten
 
 #### Pure functions vs side effects
 
-"Pure" functions take parameters and return values, but never directly read or mutate program state outside the function. This gives them the property of _idempotence_. Every time you invoke the function with the same arguments you will get the same result. 
+"Pure" functions take parameters and return values, but never directly read or mutate program state outside the function. This gives them the property of _idempotence_. Every time you invoke the function with the same arguments you will get the same result.
+
+
     // don't do this
     var thing = {
       foo: 'bar'
